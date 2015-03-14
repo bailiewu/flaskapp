@@ -62,9 +62,10 @@ def stuff():
 			test=test.lstrip("[u\'")
 			a.append(int(test))
 			response_str += "<br>"
-		print(a)
+		
  	
 	result = date(a[2],a[0],a[1])
+	print(result)
 	today=result.isoweekday()
 
 
