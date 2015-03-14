@@ -40,3 +40,63 @@ Year:<br>
 
 
 
+
+
+
+@app.route('/stuff/',methods =['GET','POST'])
+def stuff():
+	mdict=request.args
+	keys=mdict.keys()
+ 	response_str = "<ul>"
+	if len(keys)==0:
+ 		response_str = "No query string"
+ 	else:
+ 		response_str =""
+		a=[]
+		i=0
+
+ 		for key in keys:
+			
+			test = str(mdict.getlist(key))
+			test=test.rstrip("\']")
+			test=test.lstrip("[u\'")
+			a.append(int(test))
+			response_str += "<br>"
+		print(a)
+ 	
+	result = date(a[2],a[0],a[1])
+	today=result.isoweekday()
+
+
+	page= """
+	<DOCTYPE! html>
+	 <html lang="en-US">
+	 <head>
+	 <title>Hello World Page</title>
+	 <meta charset=utf-8">
+	 </head>
+	 <body>
+	 <h1>Enter a date</h1>
+	"""
+
+	if today == 1:
+		page+="""The day is a Monday."""
+	elif today == 2:
+		page+="""The day is a Tuesday."""
+	elif today == 3:
+		page+="""The day is a Wednesday."""
+	elif today == 4:
+		page+="""The day is a Thursday."""
+	elif today == 5:
+		page+="""The day is a Friday."""
+	elif today == 6:
+		page+="""The day is a Saturday."""
+	elif today == 7:
+		page+="""The day is a Sunday."""
+
+
+	page+="""
+ 	</body>
+ 	</html>
+ 	"""
+	return page
