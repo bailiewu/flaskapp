@@ -2,6 +2,8 @@
 from coreapp import app
 from datetime import date
 from flask import request
+import heroku_url.txt
+
 
 @app.route('/')
 def index():
