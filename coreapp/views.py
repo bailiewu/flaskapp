@@ -154,11 +154,11 @@ def stuff():
 	<DOCTYPE! html>
 	 <html lang="en-US">
 	 <head>
-	 <title>Hello World Page</title>
+	 <title>Day Finder</title>
 	 <meta charset=utf-8">
 	 </head>
 	 <body>
-	 <h1>Enter a date</h1>
+	 <h1>Day Finder</h1>
 	"""
 
 
