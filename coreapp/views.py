@@ -1,7 +1,7 @@
 # views.py
 from coreapp import app
-from datetime import date
-from flask import request
+from datetime import *
+from flask import request, abort
 #import heroku_url.txt
 
 
@@ -95,17 +95,20 @@ def index():
 
 @app.route('/stuff/',methods =['GET','POST'])
 def stuff():
-	mdict=request.args
-	keys=mdict.keys()
- 	response_str = "<ul>"
-	if len(keys)==0:
- 		response_str = "No query string"
- 	else:
- 		response_str =""
+
+
+
+
+	try:
+		page=""""""
+		""" OLD TEST CODE, SLOPPY
+		mdict=request.args
+		keys=mdict.keys()
+	 	
 		a=[]
 		i=0
-
- 		for key in keys:
+		
+	 	for key in keys:
 			
 			test = str(mdict.getlist(key))
 			test=test.rstrip("\']")
@@ -113,13 +116,41 @@ def stuff():
 			a.append(int(test))
 			response_str += "<br>"
 		
- 	
-	result = date(a[2],a[0],a[1])
-	print(result)
-	today=result.isoweekday()
+		result = date(a[2],a[0],a[1])
+		print(result)
+		today=result.isoweekday()
+		"""
+		month=int(request.args.get('Month'))
+		day=int(request.args.get('Day'))
+		year=int(request.args.get('Year'))
 
+		result = date(2015,3,16)
 
-	page= """
+		print "RESULT WORKS"
+		print(result)
+		today=result.isoweekday()
+		print "GOT HERE"
+
+		if today == 1:
+			result="Monday."
+		elif today == 2:
+			result="Tuesday."
+		elif today == 3:
+			result="Wednesday."
+		elif today == 4:
+			result="Thursday."
+		elif today == 5:
+			result="Friday."
+		elif today == 6:
+			result="Saturday."
+		elif today == 7:
+			result="Sunday."
+
+	except Exception, e:
+		result="""invalid."""
+		
+
+	page+= """
 	<DOCTYPE! html>
 	 <html lang="en-US">
 	 <head>
@@ -130,22 +161,10 @@ def stuff():
 	 <h1>Enter a date</h1>
 	"""
 
-	if today == 1:
-		page+="""The day is a Monday."""
-	elif today == 2:
-		page+="""The day is a Tuesday."""
-	elif today == 3:
-		page+="""The day is a Wednesday."""
-	elif today == 4:
-		page+="""The day is a Thursday."""
-	elif today == 5:
-		page+="""The day is a Friday."""
-	elif today == 6:
-		page+="""The day is a Saturday."""
-	elif today == 7:
-		page+="""The day is a Sunday."""
 
 
+	page+="""The day is """
+	page+=result
 	page+="""
  	</body>
  	</html>
