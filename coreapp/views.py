@@ -123,12 +123,14 @@ def stuff():
 		month=int(request.args.get('Month'))
 		day=int(request.args.get('Day'))
 		year=int(request.args.get('Year'))
-
-		result = date(2015,3,16)
-
+		
+		print "month is", month
+		print "day is", day
+		print "year is", year
+		result=date(year,month,day)
 		print "RESULT WORKS"
-		print(result)
 		today=result.isoweekday()
+		print today
 		print "GOT HERE"
 
 		if today == 1:
